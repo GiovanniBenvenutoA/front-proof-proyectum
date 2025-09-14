@@ -1,0 +1,21 @@
+.swal2-form-grid {
+  display: grid;
+  grid-template-columns: 120px 1fr; /* primera col = label, segunda col = input */
+  gap: 12px 16px; /* espacio filas y columnas */
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.swal2-form-grid label {
+  font-weight: 500;
+  color: #333;
+}
+
+.swal2-form-grid .swal2-input,
+.swal2-form-grid .swal2-textarea {
+  width: 100% !important;
+  margin: 0 !important; /* quita márgenes por defecto de swal */
+}
