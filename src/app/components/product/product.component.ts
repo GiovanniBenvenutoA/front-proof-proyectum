@@ -17,6 +17,7 @@ export class ProductComponent implements OnInit {
   size = 10;
   data: PageResponse<Product> | null = null;
   loading = false;
+  token:string | undefined;
 
   constructor(private productSrv: ProductService) {}
 
@@ -26,6 +27,16 @@ export class ProductComponent implements OnInit {
 
   load() {
     this.loading = true;
+    this.productSrv.token('admin','admin123').subscribe({
+      next: (resp) => {
+        this.token=resp.token
+        console.log('Token recibido:', resp.token);
+        console.log('Token recibido:', this.token);
+      },
+      error: (err) => {
+        console.error('Error al loguear:', err);
+      }
+    });
     this.productSrv.list(this.q, this.page, this.size).subscribe({
       next: (res) => { this.data = res; this.loading = false; },
       error: (e) => { this.loading = false; Swal.fire('Error', this.msg(e), 'error'); }
